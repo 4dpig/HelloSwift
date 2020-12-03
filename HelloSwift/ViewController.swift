@@ -15,11 +15,35 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showMessage(sender: UIButton) {
-        let alertController = UIAlertController(title: "Welcome to my first App!", message: "Hello World", preferredStyle: UIAlertController.Style.alert)
+        // Initialize emoji dict
+        let emojiDict = [
+            "😤": "Angry",
+            "😱": "Scary",
+            "🤔": "Ponder",
+            "🤪": "Make a face",
+            "😆": "Laugh greatly",
+            "🥰": "Smile face surrounded by love"
+        ]
         
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-       
-        present(alertController, animated: true, completion: nil)
+        // get emoji from button selected
+        let selectedButton = sender
+        if let emojiToLookUp = selectedButton.titleLabel?.text {
+            // display an alert with corresponding emoji meaning
+            let alertController = UIAlertController(
+                title: "Meaning",
+                message: emojiDict[emojiToLookUp],
+                preferredStyle: UIAlertController.Style.alert
+            )
+
+            alertController.addAction(
+                UIAlertAction(
+                    title: "OK", style: UIAlertAction.Style.default, handler: nil
+                )
+            )
+           
+            present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
 }
